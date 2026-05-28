@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Camera</string>
+    <string name="take_photo">Take photo</string>
+    <string name="permission_denied">Camera permission is required</string>
+    <string name="camera_error">Failed to start camera</string>
+    <string name="capture_error">Failed to capture photo</string>
+    <string name="saved">Saved</string>
+    <string name="save_error">Failed to save photo</string>
+</resources>
