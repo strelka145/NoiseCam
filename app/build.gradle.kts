@@ -4,20 +4,34 @@ plugins {
 }
 
 android {
-    namespace = "com.example.noisecam"
+    namespace = "io.github.strelka145.noisecam"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.noisecam"
+        applicationId = "io.github.strelka145.noisecam"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePath = System.getenv("SIGNING_KEYSTORE_PATH")
+            if (keystorePath != null) {
+                storeFile = file(keystorePath)
+                storePassword = System.getenv("SIGNING_STORE_PASSWORD")
+                keyAlias = System.getenv("SIGNING_KEY_ALIAS")
+                keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            val rel = signingConfigs.getByName("release")
+            if (rel.storeFile != null) signingConfig = rel
         }
     }
     compileOptions {
