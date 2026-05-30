@@ -33,10 +33,12 @@ jobs:
         run: chmod +x gradlew
 
       - name: Decode keystore
-        if: secrets.SIGNING_KEYSTORE != ''
-        run: echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 -d > keystore.jks
         env:
           SIGNING_KEYSTORE: ${{ secrets.SIGNING_KEYSTORE }}
+        run: |
+          if [ -n "$SIGNING_KEYSTORE" ]; then
+            echo "$SIGNING_KEYSTORE" | base64 -d > keystore.jks
+          fi
 
       - name: Build debug APK
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.build_type == 'debug'
