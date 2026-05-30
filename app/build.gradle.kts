@@ -41,6 +41,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    applicationVariants.all {
+        outputs.all {
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
+                .outputFileName = "NoiseCam.apk"
+        }
+    }
 }
 
 dependencies {
