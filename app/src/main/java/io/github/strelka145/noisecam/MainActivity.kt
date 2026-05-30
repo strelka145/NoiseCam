@@ -1,4 +1,4 @@
-package com.example.noisecam
+package io.github.strelka145.noisecam
 
 import android.Manifest
 import android.annotation.SuppressLint
